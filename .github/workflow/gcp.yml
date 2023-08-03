@@ -1,0 +1,51 @@
+name: Build and Push Image to Google Cloud Platform
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-push-gcr:
+    name: Build and Push to GCP
+    runs-on: ubuntu-latest
+    env:
+      SERVICE: temperature-service
+      IMAGE_NAME: temperature-img
+      PROJECT_ID: curso-itj-2023
+      BUCKET_NAME: curso-2023
+      ARTIFACT: us-central1-docker.pkg.dev
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+        project_id: ${{ env.PROJECT_ID }}
+
+    - name: Build Docker Image
+      run: docker build -t $IMAGE_NAME:latest .
+
+    - name: Configure Docker Client
+      run: |-
+        gcloud auth configure-docker $ARTIFACT --quiet
+
+    - name: Push Docker Image to Artifact Registry
+      run: |-
+        docker tag $IMAGE_NAME:latest $ARTIFACT/$PROJECT_ID/$BUCKET_NAME/$IMAGE_NAME:latest
+        docker push $ARTIFACT/$PROJECT_ID/$BUCKET_NAME/$IMAGE_NAME:latest
+
+    - id: 'deploy'
+      uses: google-github-actions/deploy-cloudrun@v1
+      with:
+        service:  ${{ env.SERVICE }}
+        region: us-central1
+        image: us-central1-docker.pkg.dev/curso-itj-2023/curso-2023/api-img:latest
+        env_vars: |
+          POSTGRES_USER=uwzkipwj
+          POSTGRES_NAME=uwzkipwj
+          POSTGRES_PASSWORD=wQN5gGAQVD8qg-b--RuRLt8Q1XPU_gHQ
+          POSTGRES_HOST=otto.db.elephantsql.com
+          DEBUG=1
+
+    - name: 'Use output'
+      run: 'curl "${{ steps.deploy.outputs.url }}"'
