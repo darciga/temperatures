@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'rest_framework',
     'mediciones.apps.MedicionesConfig'
 ]
 
@@ -89,6 +90,15 @@ DATABASES = {
        'HOST': os.environ.get('POSTGRES_HOST'),
        'PORT': 5432,
    }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer'
+    ]
 }
 
 
