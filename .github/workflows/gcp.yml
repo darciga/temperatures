@@ -39,7 +39,7 @@ jobs:
       with:
         service:  ${{ env.SERVICE }}
         region: us-central1
-        image: ${{ env.ARTIFACT }}/${{ env.PROJECT_ID }}/${{ env.BUCKET_NAME }}/${{ env.temperature-img }}:latest
+        image: ${{ env.ARTIFACT }}/${{ env.PROJECT_ID }}/${{ env.BUCKET_NAME }}/${{ env.IMAGE_NAME }}:latest
         env_vars: |
           POSTGRES_USER=uwzkipwj
           POSTGRES_NAME=uwzkipwj
