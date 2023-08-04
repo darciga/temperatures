@@ -39,7 +39,7 @@ jobs:
       with:
         service:  ${{ env.SERVICE }}
         region: us-central1
-        image: us-central1-docker.pkg.dev/curso-itj-2023/curso-2023/${{ env.IMAGE_NAME }}:latest
+        image: us-central1-docker.pkg.dev/curso-itj-2023/curso-2023/temperature-img:latest
         env_vars: |
           POSTGRES_USER=uwzkipwj
           POSTGRES_NAME=uwzkipwj
