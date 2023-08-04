@@ -128,8 +128,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-# STATIC_URL = '/static/'
-STATIC_URL = 'https://storage.googleapis.com/ukua-storage/static/'
+STATIC_URL = '/static/'
 if os.environ.get('STATIC_URL') == '0':
     STATIC_URL = os.environ.get('STATIC_URL')
 
