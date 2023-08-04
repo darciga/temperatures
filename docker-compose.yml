@@ -10,17 +10,17 @@ services:
   web_temperature:
     container_name: temp
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    entrypoint: ./docker-entrypoint.sh
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - "8000:8080"
     environment:
       - POSTGRES_NAME=uwzkipwj
       - POSTGRES_USER=uwzkipwj
       - POSTGRES_PASSWORD=wQN5gGAQVD8qg-b--RuRLt8Q1XPU_gHQ
       - POSTGRES_HOST=otto.db.elephantsql.com
       - SECRET_KEY=django-insecure-yo6(-1&i@%f&o30ediq9779uvqh#&tym)k))xtf1h%$^*+v555
-      - DEBUG=0
+      - DEBUG=1
     depends_on:
       - db_temperature
