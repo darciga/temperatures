@@ -13,11 +13,21 @@ class AreaAPIListView(generics.ListAPIView):
     queryset = Area.objects.all()
 
 
+class AreaAPICreateView(generics.CreateAPIView):
+    serializer_class = AreaSerializer
+    queryset = Area.objects.all()
+
+
 class RegionAPIListView(generics.ListAPIView):
     serializer_class = RegionSerializer
     queryset = Region.objects.all()
 
 
 class MeasurementsAPIListView(generics.ListAPIView):
+    serializer_class = MeasurementsSerializer
+    queryset = Measurements.objects.all()
+
+
+class MeasurementsAPICreateView(generics.CreateAPIView):
     serializer_class = MeasurementsSerializer
     queryset = Measurements.objects.all()
