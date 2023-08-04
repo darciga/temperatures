@@ -50,4 +50,4 @@ jobs:
           STATIC_URL=https://storage.googleapis.com/ukua-storage/static/
 
     - name: 'Use output'
-      run: 'curl "${{ steps.deploy.outputs.url }}"'
+      run: 'echo "${{ steps.deploy.outputs.url }}"'
