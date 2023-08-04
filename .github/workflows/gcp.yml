@@ -39,13 +39,13 @@ jobs:
       with:
         service:  ${{ env.SERVICE }}
         region: us-central1
-        image: us-central1-docker.pkg.dev/curso-itj-2023/curso-2023/api-img:latest
+        image: us-central1-docker.pkg.dev/curso-itj-2023/curso-2023/${{ env.IMAGE_NAME }}:latest
         env_vars: |
           POSTGRES_USER=uwzkipwj
           POSTGRES_NAME=uwzkipwj
           POSTGRES_PASSWORD=wQN5gGAQVD8qg-b--RuRLt8Q1XPU_gHQ
           POSTGRES_HOST=otto.db.elephantsql.com
-          DEBUG=0
+          DEBUG=1
           SECRET_KEY=o65onyr46gkjr2#btdqkwhem!m2
           STATIC_URL=https://storage.googleapis.com/ukua-storage/static/
 
