@@ -21,6 +21,6 @@ services:
       - POSTGRES_PASSWORD=wQN5gGAQVD8qg-b--RuRLt8Q1XPU_gHQ
       - POSTGRES_HOST=otto.db.elephantsql.com
       - SECRET_KEY=django-insecure-yo6(-1&i@%f&o30ediq9779uvqh#&tym)k))xtf1h%$^*+v555
-      - DEBUG=1
+      - DEBUG=0
     depends_on:
       - db_temperature
